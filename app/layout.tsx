@@ -34,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={inter.variable}>
       <head>
+        <link rel="icon" href="/images/bloomlogo.png" />
         <link rel="canonical" href="https://your-domain.com" />
       </head>
       <body className={`${inter.className} antialiased`}>
