@@ -4,6 +4,7 @@ import { useLanguage } from "./language-provider"
 import { Button } from "@/components/ui/button"
 import { ArrowDown } from "lucide-react"
 import Link from "next/link"
+import { HeroLayout, ResponsiveHeading, ResponsiveText } from "./responsive-layout"
 
 export default function Hero() {
   const { t } = useLanguage()
@@ -24,39 +25,45 @@ export default function Hero() {
         style={{ animationDelay: "4s" }}
       />
 
-      <div className="container mx-auto container-padding relative z-10">
-        <div className="text-center max-w-5xl mx-auto">
-          {/* Main Headline */}
-          <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight animate-fade-in-up"
+      <HeroLayout className="relative z-10">
+        <div className="text-center">
+          {/* Main Headline - Responsive Typography */}
+          <ResponsiveHeading
+            level={1}
+            size="4xl"
+            className="text-foreground/90 mb-6 sm:mb-8 animate-fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
-            <span className="text-foreground/90">{t("hero.introduction")}</span>
-          </h1>
+            <span className="break-words hyphens-auto">
+              {t("hero.introduction")}
+            </span>
+          </ResponsiveHeading>
 
-          {/* Tagline */}
+          {/* Tagline - Responsive with better line breaks */}
           <p
-            className="text-lg md:text-xl lg:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed font-light animate-fade-in-up"
+            className="text-muted-foreground mb-8 sm:mb-12 leading-relaxed font-light animate-fade-in-up max-w-5xl mx-auto"
             style={{ animationDelay: "0.4s" }}
           >
-            {t("hero.subtitle")}
+            <ResponsiveText size="lg" className="block">
+              {t("hero.subtitle")}
+            </ResponsiveText>
           </p>
 
-          {/* CTA Button */}
-          <div className="mb-16 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
+          {/* CTA Button - Responsive sizing */}
+          <div className="animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
             <Button
               size="lg"
-              className="gradient-primary text-white font-semibold px-10 py-6 text-lg hover:scale-105 transition-all duration-300 shadow-2xl glow-primary rounded-2xl"
+              className="gradient-primary text-white font-semibold px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 text-base sm:text-lg hover:scale-105 transition-all duration-300 shadow-2xl glow-primary rounded-2xl"
               asChild
             >
               <Link href="#portfolio">
                 {t("hero.viewWork")}
-                <ArrowDown className="ml-2 h-5 w-5" />
+                <ArrowDown className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Link>
             </Button>
           </div>
         </div>
-      </div>
+      </HeroLayout>
     </section>
   )
 }
